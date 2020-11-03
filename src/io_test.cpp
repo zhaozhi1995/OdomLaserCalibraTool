@@ -61,7 +61,7 @@ int main(int argc, char **argv)
   if (scan_odom.size() == 0) {
     std::cout << colouredString("ERROR! No matching results!", RED, BOLD) << std::endl;
   }
-
+#if 0
   std::cout << colouredString("Writing results...", YELLOW, REGULAR) << std::endl;
 
   std::ofstream fout(resultfile);
@@ -96,12 +96,12 @@ int main(int argc, char **argv)
   fout4.close();
 
   std::cout << colouredString("Results saved!", GREEN, REGULAR) << std::endl;
-
+#endif
   std::cout << colouredString("Start synchronzing...", YELLOW, REGULAR) << std::endl;
   std::vector<cSynchronizer::sync_data> sync_results;
   cSync.synchronizeLaserOdom(odom_data, match_results, sync_results);
   std::cout << colouredString("Sync finished!", GREEN, REGULAR) << std::endl;
-
+#if 0
   std::ofstream fout2(syncfile);
   for (int i = 0; i < sync_results.size(); i++)
   {
@@ -113,8 +113,8 @@ int main(int argc, char **argv)
   }
   fout2 << std::flush;
   fout2.close();
-
   std::cout << colouredString("Sync results saved!", GREEN, REGULAR) << std::endl;
+#endif
 
   cSolve.calib(sync_results, 4);
 
